@@ -61,7 +61,7 @@ public class StatsServiceImpl implements StatsService {
             stats = statsRepository.findStat(start, end, uris);
         }
 
-        log.debug("Статистики по посещениям найдена: {}", stats);
+        log.debug("Статистика по посещениям найдена: {}", stats);
         return stats.stream().map(viewStatsMapper::toViewStatsDto).toList();
     }
 
