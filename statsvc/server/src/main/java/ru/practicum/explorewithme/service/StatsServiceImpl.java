@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explorewithme.EndpointHitDto;
 import ru.practicum.explorewithme.ViewStatsDto;
-import ru.practicum.explorewithme.exception.UnavailableDataException;
+import ru.practicum.explorewithme.exception.BadRequestException;
 import ru.practicum.explorewithme.mapper.EndpointHitMapper;
 import ru.practicum.explorewithme.mapper.ViewStatsMapper;
 import ru.practicum.explorewithme.model.EndpointHit;
@@ -51,8 +51,11 @@ public class StatsServiceImpl implements StatsService {
                   "По uris: {}. Только с уникальным ip: {}", start, end, uris, unique);
 
         if (start == null || end == null) {
-            throw new UnavailableDataException("Параметры start и end не могут быть null");
+            throw new BadRequestException("Параметры start и end не могут быть null");
         }
+
+        if (start.isAfter(end))
+            throw new BadRequestException("Дата начала события не может быть позже даты окончания");
 
         List<ViewStats> stats;
         if (unique) {

@@ -19,17 +19,17 @@ public class ExceptionHandler {
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorResponse handleUnavailableDataException(final UnavailableDataException e) {
-        log.error("Error 500: {}", e.getMessage());
-        return new ErrorResponse(e.getMessage());
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {
+        log.error("Error 400: {}", e.getBindingResult().getAllErrors().getFirst().getDefaultMessage());
+        return new ErrorResponse(e.getBindingResult().getAllErrors().getFirst().getDefaultMessage());
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleMethodArgumentNotValidException(final MethodArgumentNotValidException e) {
-        log.error("Error 400: Валидация аргументов: {}", e.getBindingResult().getAllErrors().getFirst().getDefaultMessage());
-        return new ErrorResponse(e.getBindingResult().getAllErrors().getFirst().getDefaultMessage());
+    public ErrorResponse handleBadRequestException(final BadRequestException e) {
+        log.error("Error 400: {}", e.getMessage());
+        return new ErrorResponse(e.getMessage());
     }
 
     @org.springframework.web.bind.annotation.ExceptionHandler
