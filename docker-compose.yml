@@ -1,15 +1,15 @@
 services:
-  statsvc:
+  stats-server:
     build: ./statsvc/server
-    image: statsvc
-    container_name: statsvc
+    image: stats-server
+    container_name: stats-server
     ports:
       - "9090:9090"
     depends_on:
-      statdb:
+      stats-db:
         condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://statdb:5432/statdb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://stats-db:5432/statdb
       - SPRING_DATASOURCE_USERNAME=stat
       - SPRING_DATASOURCE_PASSWORD=stat
     healthcheck:
@@ -18,9 +18,9 @@ services:
       timeout: 5s
       retries: 2
 
-  statdb:
+  stats-db:
     image: postgres:16.1
-    container_name: statdb
+    container_name: stats-db
     restart: always
     ports:
       - "5436:5432"
@@ -34,25 +34,25 @@ services:
       timeout: 5s
       retries: 2
 
-  mainsvc:
+  ewm-service:
     build: mainsvc
-    image: mainsvc
-    container_name: mainsvc
+    image: ewm-service
+    container_name: ewm-service
     ports:
       - "8080:8080"
     depends_on:
-      maindb:
+      ewm-db:
         condition: service_healthy
-      statsvc:
+      stats-server:
         condition: service_healthy
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://maindb:5432/maindb
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://ewm-db:5432/maindb
       - SPRING_DATASOURCE_USERNAME=main
       - SPRING_DATASOURCE_PASSWORD=main
 
-  maindb:
+  ewm-db:
     image: postgres:16.1
-    container_name: maindb
+    container_name: ewm-db
     restart: always
     ports:
       - "5434:5432"
