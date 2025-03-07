@@ -21,6 +21,7 @@ import java.util.List;
 @Slf4j
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class CategoryServiceImpl implements CategoryService {
 
     private final CategoryRepository categoryRepository;
@@ -28,7 +29,6 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryMapper categoryMapper;
 
     @Override
-    @Transactional(readOnly = true)
     public Category getCategoryById(Long categoryId) {
         log.debug("Получение категорий по id: {}", categoryId);
         return categoryRepository.findById(categoryId)
@@ -36,7 +36,6 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<CategoryDto> getCategories(Integer from, Integer size) {
         log.debug("Получение категорий с параметрами: from={}, size={}", from, size);
 
@@ -97,4 +96,3 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryMapper.toCategoryDto(updatedCategory);
     }
 }
-

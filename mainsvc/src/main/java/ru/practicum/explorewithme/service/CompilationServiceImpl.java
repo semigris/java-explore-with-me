@@ -11,7 +11,6 @@ import ru.practicum.explorewithme.dto.campilation.UpdateCompilationRequest;
 import ru.practicum.explorewithme.exception.NotFoundException;
 import ru.practicum.explorewithme.mapper.CompilationMapper;
 import ru.practicum.explorewithme.model.Compilation;
-import ru.practicum.explorewithme.model.Event;
 import ru.practicum.explorewithme.repository.CompilationRepository;
 import ru.practicum.explorewithme.repository.EventRepository;
 import ru.practicum.explorewithme.service.base.CompilationService;
@@ -21,6 +20,7 @@ import java.util.List;
 @Slf4j
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class CompilationServiceImpl implements CompilationService {
 
     private final CompilationRepository compilationRepository;
@@ -56,17 +56,7 @@ public class CompilationServiceImpl implements CompilationService {
         Compilation compilation = compilationRepository.findById(compId)
                 .orElseThrow(() -> new NotFoundException("Подборка не найдена"));
 
-        compilation.setPinned(updateCompilationRequest.getPinned());
-
-        if (updateCompilationRequest.getTitle() != null) {
-            compilation.setTitle(updateCompilationRequest.getTitle());
-        }
-
-        if (updateCompilationRequest.getEvents() != null) {
-            List<Event> events = eventRepository.findAllById(updateCompilationRequest.getEvents());
-            compilation.setEvents(events);
-        }
-
+        compilation = compilationMapper.toCompilation(compilation, updateCompilationRequest);
         Compilation updatedCompilation = compilationRepository.save(compilation);
 
         log.debug("Подборка обновлена: {}", updatedCompilation);
@@ -74,7 +64,6 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public CompilationDto getCompilationById(Long compId) {
         log.debug("Получение подборки по id: {}", compId);
         Compilation compilation = compilationRepository.findById(compId)
@@ -85,7 +74,6 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<CompilationDto> getCompilations(Boolean pinned, Integer from, Integer size) {
         log.debug("Получение подборок с параметрами: pinned={}, from={}, size={}", pinned, from, size);
 

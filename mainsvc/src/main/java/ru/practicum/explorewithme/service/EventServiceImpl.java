@@ -1,14 +1,11 @@
 package ru.practicum.explorewithme.service;
 
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.practicum.explorewithme.EndpointHitDto;
@@ -45,6 +42,7 @@ import static ru.practicum.explorewithme.model.Event.EventState.*;
 @Slf4j
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class EventServiceImpl implements EventService {
 
     private final EventRepository eventRepository;
@@ -55,7 +53,6 @@ public class EventServiceImpl implements EventService {
     private final StatsClient statsClient;
 
     @Override
-    @Transactional(readOnly = true)
     public EventFullDto getEvent(Long userId, Long eventId) {
         log.debug("Получение полной информации о событии с id: {} для пользователя с id: {}", eventId, userId);
         Event event = eventRepository.findByIdAndInitiatorId(eventId, userId)
@@ -70,7 +67,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public EventFullDto getEvent(Long id, HttpServletRequest request) {
         log.debug("Получение подробной информации о событии с id: {}", id);
         statsClient.saveHit(createHit(request));
@@ -87,7 +83,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<EventFullDto> getEvents(List<Long> users, List<String> states, List<Long> categories, LocalDateTime rangeStart, LocalDateTime rangeEnd, Integer from, Integer size) {
         log.debug("Получение событий с параметрами: users={}, states={}, categories={}, rangeStart={}, rangeEnd={}, from={}, size={}", users, states, categories, rangeStart, rangeEnd, from, size);
 
@@ -111,7 +106,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<EventShortDto> getEvents(String text, List<Long> categories, Boolean paid, LocalDateTime rangeStart, LocalDateTime rangeEnd, Boolean onlyAvailable, String sort, Integer from, Integer size, HttpServletRequest request) {
         log.debug("Получение событий с параметрами: text={}, categories={}, paid={}, rangeStart={}, rangeEnd={}, onlyAvailable={}, sort={}, from={}, size={}", text, categories, paid, rangeStart, rangeEnd, onlyAvailable, sort, from, size);
         statsClient.saveHit(createHit(request));
@@ -150,7 +144,6 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<EventShortDto> getEvents(Long userId, Integer from, Integer size) {
         log.debug("Получение событий пользователя с id: {}, параметры: from={}, size={}", userId, from, size);
         userService.getUserById(userId);
@@ -232,7 +225,6 @@ public class EventServiceImpl implements EventService {
 
 
     @Override
-    @Transactional(readOnly = true)
     public List<ParticipationRequestDto> getEventParticipants(Long userId, Long eventId) {
         log.debug("Получение информации о запросах на участие в событии с id: {} для пользователя с id: {}", eventId, userId);
         eventRepository.findByIdAndInitiatorId(eventId, userId)
@@ -273,11 +265,7 @@ public class EventServiceImpl implements EventService {
             return Collections.emptyMap();
         }
 
-        ResponseEntity<Object> response = statsClient.getStats(dateForStart, LocalDateTime.now(), uris, true);
-
-        ObjectMapper objectMapper = new ObjectMapper();
-        List<ViewStatsDto> viewStatsList = objectMapper.convertValue(response.getBody(), new TypeReference<>() {
-        });
+        List<ViewStatsDto> viewStatsList = statsClient.getStats(dateForStart, LocalDateTime.now(), uris, true);
 
         return viewStatsList.stream()
                 .filter(statsDto -> statsDto.getUri().startsWith("/events/"))
@@ -287,5 +275,3 @@ public class EventServiceImpl implements EventService {
                 ));
     }
 }
-
-

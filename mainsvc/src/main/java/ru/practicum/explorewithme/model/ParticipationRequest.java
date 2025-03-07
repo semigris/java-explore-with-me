@@ -6,6 +6,8 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
+
 @Getter
 @Setter
 @Builder
@@ -37,7 +39,7 @@ public class ParticipationRequest {
 
     /** Дата и время создания заявки */
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private LocalDateTime created;
 
     public enum RequestStatus {

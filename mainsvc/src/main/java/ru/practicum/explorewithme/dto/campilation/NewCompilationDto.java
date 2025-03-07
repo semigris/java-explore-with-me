@@ -13,7 +13,7 @@ public class NewCompilationDto {
     private List<Long> events;
 
     /** Закреплена ли подборка на главной странице сайта */
-    private Boolean pinned = false;
+    private boolean pinned = false;
 
     /** Заголовок подборки */
     @NotBlank

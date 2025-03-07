@@ -7,6 +7,8 @@ import ru.practicum.explorewithme.model.Location;
 
 import java.time.LocalDateTime;
 
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
+
 @Data
 public class NewEventDto {
 
@@ -26,22 +28,23 @@ public class NewEventDto {
 
     /** Дата и время на которые намечено событие */
     @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     @FutureOrPresent
     private LocalDateTime eventDate;
 
     /** Местоположение события */
+    @NotNull
     private Location location;
 
     /** Нужно ли оплачивать участие в событии */
-    private Boolean paid = false;
+    private boolean paid = false;
 
     /** Ограничение на количество участников */
     @Min(0)
     private Long participantLimit = 0L;
 
     /** Нужна ли пре-модерация заявок на участие */
-    private Boolean requestModeration = true;
+    private boolean requestModeration = true;
 
     /** Заголовок события */
     @NotBlank

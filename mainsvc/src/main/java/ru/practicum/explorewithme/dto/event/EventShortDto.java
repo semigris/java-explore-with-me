@@ -1,14 +1,16 @@
 package ru.practicum.explorewithme.dto.event;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import ru.practicum.explorewithme.dto.user.UserShortDto;
 import ru.practicum.explorewithme.dto.category.CategoryDto;
+import ru.practicum.explorewithme.dto.user.UserShortDto;
 
 import java.time.LocalDateTime;
+
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
 
 @Data
 @Builder
@@ -28,7 +30,7 @@ public class EventShortDto {
     private Long confirmedRequests;
 
     /** Дата и время на которые намечено событие */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private LocalDateTime eventDate;
 
     /** Инициатор события */
@@ -43,4 +45,3 @@ public class EventShortDto {
     /** Количество просмотрев события */
     private Long views;
 }
-

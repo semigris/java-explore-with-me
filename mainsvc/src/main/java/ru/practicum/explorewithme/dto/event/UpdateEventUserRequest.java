@@ -9,6 +9,8 @@ import ru.practicum.explorewithme.model.Location;
 
 import java.time.LocalDateTime;
 
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
+
 @Data
 public class UpdateEventUserRequest {
 
@@ -25,7 +27,7 @@ public class UpdateEventUserRequest {
     private String description;
 
     /** Новые дата и время на которые намечено событие. Дата и время указываются в формате "yyyy-MM-dd HH:mm:ss" */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private LocalDateTime eventDate;
 
     /** Местоположение */
@@ -52,4 +54,3 @@ public class UpdateEventUserRequest {
         SEND_TO_REVIEW, CANCEL_REVIEW
     }
 }
-

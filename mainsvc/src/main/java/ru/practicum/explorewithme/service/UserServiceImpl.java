@@ -20,13 +20,13 @@ import java.util.List;
 @Slf4j
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
     @Override
-    @Transactional(readOnly = true)
     public User getUserById(Long userId) {
         log.debug("Получение пользователя по id: {}", userId);
         return userRepository.findById(userId)
@@ -34,7 +34,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<UserDto> getUsers(List<Long> ids, Integer from, Integer size) {
         log.debug("Получение пользователей с параметрами: ids={}, from={}, size={}", ids, from, size);
 
@@ -75,4 +74,3 @@ public class UserServiceImpl implements UserService {
         log.debug("Пользователь удален");
     }
 }
-

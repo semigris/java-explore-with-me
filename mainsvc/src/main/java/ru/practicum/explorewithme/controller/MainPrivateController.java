@@ -5,7 +5,10 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.practicum.explorewithme.dto.event.*;
+import ru.practicum.explorewithme.dto.event.EventFullDto;
+import ru.practicum.explorewithme.dto.event.EventShortDto;
+import ru.practicum.explorewithme.dto.event.NewEventDto;
+import ru.practicum.explorewithme.dto.event.UpdateEventUserRequest;
 import ru.practicum.explorewithme.dto.request.EventRequestStatusUpdateRequest;
 import ru.practicum.explorewithme.dto.request.EventRequestStatusUpdateResult;
 import ru.practicum.explorewithme.dto.request.ParticipationRequestDto;
@@ -30,11 +33,10 @@ public class MainPrivateController {
      */
 
     @GetMapping("/events")
-    @ResponseStatus(HttpStatus.OK)
     public List<EventShortDto> getEvents(
             @PathVariable Long userId,
-            @RequestParam(required = false, defaultValue = "0") Integer from,
-            @RequestParam(required = false, defaultValue = "10") Integer size
+            @RequestParam(defaultValue = "0") Integer from,
+            @RequestParam(defaultValue = "10") Integer size
     ) {
         log.debug("Запрос на получение событий пользователя с id: {}, параметры: from={}, size={}", userId, from, size);
         return eventService.getEvents(userId, from, size);
@@ -58,7 +60,6 @@ public class MainPrivateController {
      * GET /users/{userId}/events/{eventId} Получение полной информации о событии добавленном текущим пользователем
      */
     @GetMapping("/events/{eventId}")
-    @ResponseStatus(HttpStatus.OK)
     public EventFullDto getEvent(
             @PathVariable Long userId,
             @PathVariable Long eventId
@@ -71,7 +72,6 @@ public class MainPrivateController {
      * PATCH /users/{userId}/events/{eventId} Изменение события добавленного текущим пользователем.
      */
     @PatchMapping("/events/{eventId}")
-    @ResponseStatus(HttpStatus.OK)
     public EventFullDto updateEvent(
             @PathVariable Long userId,
             @PathVariable Long eventId,
@@ -86,7 +86,6 @@ public class MainPrivateController {
      */
 
     @GetMapping("/events/{eventId}/requests")
-    @ResponseStatus(HttpStatus.OK)
     public List<ParticipationRequestDto> getEventParticipants(@PathVariable Long userId,
                                                               @PathVariable Long eventId) {
         log.debug("Запрос на получение информации о запросах на участие в событии с id: {} для пользователя с id: {}", eventId, userId);
@@ -98,7 +97,6 @@ public class MainPrivateController {
      */
 
     @PatchMapping("/events/{eventId}/requests")
-    @ResponseStatus(HttpStatus.OK)
     public EventRequestStatusUpdateResult changeRequestStatus(@PathVariable Long userId,
                                                               @PathVariable Long eventId,
                                                               @RequestBody @Valid EventRequestStatusUpdateRequest requestStatusUpdate) {
@@ -113,7 +111,6 @@ public class MainPrivateController {
      */
 
     @GetMapping("/requests")
-    @ResponseStatus(HttpStatus.OK)
     public List<ParticipationRequestDto> getUserRequests(@PathVariable Long userId) {
         log.debug("Запрос на получение информации о заявках текущего пользователя с id: {} на участие в чужих событиях", userId);
         return requestService.getUserRequests(userId);
@@ -126,7 +123,7 @@ public class MainPrivateController {
     @PostMapping("/requests")
     @ResponseStatus(HttpStatus.CREATED)
     public ParticipationRequestDto addParticipationRequest(@PathVariable Long userId,
-                                                           @RequestParam (required = false) Long eventId) {
+                                                           @RequestParam(required = false) Long eventId) {
         log.debug("Запрос на добавление запроса от пользователя с id: {} на участие в событии с id: {}", userId, eventId);
         return requestService.addParticipationRequest(userId, eventId);
     }
@@ -136,7 +133,6 @@ public class MainPrivateController {
      */
 
     @PatchMapping("/requests/{requestId}/cancel")
-    @ResponseStatus(HttpStatus.OK)
     public ParticipationRequestDto cancelRequest(@PathVariable Long userId,
                                                  @PathVariable Long requestId) {
         log.debug("Запрос на отмену запроса на участие с id: {} для пользователя с id: {}", requestId, userId);

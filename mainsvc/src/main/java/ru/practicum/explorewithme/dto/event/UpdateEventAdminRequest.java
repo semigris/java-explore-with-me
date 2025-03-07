@@ -8,6 +8,8 @@ import ru.practicum.explorewithme.model.Location;
 
 import java.time.LocalDateTime;
 
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
+
 @Data
 public class UpdateEventAdminRequest {
 
@@ -23,7 +25,7 @@ public class UpdateEventAdminRequest {
     private String description;
 
     /** Новые дата и время на которые намечено событие. Дата и время указываются в формате "yyyy-MM-dd HH:mm:ss" */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     @FutureOrPresent
     private LocalDateTime eventDate;
 
@@ -50,4 +52,3 @@ public class UpdateEventAdminRequest {
         PUBLISH_EVENT, REJECT_EVENT
     }
 }
-

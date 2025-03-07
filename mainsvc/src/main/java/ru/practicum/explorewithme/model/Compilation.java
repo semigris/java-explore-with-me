@@ -3,7 +3,7 @@ package ru.practicum.explorewithme.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 @Table(name = "compilations")
 public class Compilation {
 
@@ -20,9 +21,11 @@ public class Compilation {
     private Long id;
 
     /** Список событий входящих в подборку */
-    @OneToMany
-    @JoinColumn(name = "compilation_id")
-    private List<Event> events;
+    @ManyToMany
+    @JoinTable(name = "compilation_event",
+            joinColumns = @JoinColumn(name = "compilation_id"),
+            inverseJoinColumns = @JoinColumn(name = "event_id"))
+    private Set<Event> events;
 
     /** Закреплена ли подборка на главной странице сайта */
     private Boolean pinned;
@@ -30,4 +33,3 @@ public class Compilation {
     /** Заголовок подборки */
     private String title;
 }
-

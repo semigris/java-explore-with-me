@@ -12,6 +12,8 @@ import ru.practicum.explorewithme.model.Location;
 
 import java.time.LocalDateTime;
 
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
+
 @Data
 @Builder
 @AllArgsConstructor
@@ -30,14 +32,14 @@ public class EventFullDto {
     private Long confirmedRequests;
 
     /** Дата и время создания события (в формате "yyyy-MM-dd HH:mm:ss") */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private LocalDateTime createdOn;
 
     /** Полное описание события */
     private String description;
 
     /** Дата и время на которые намечено событие (в формате "yyyy-MM-dd HH:mm:ss") */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private LocalDateTime eventDate;
 
     /** Инициатор события */
@@ -53,7 +55,7 @@ public class EventFullDto {
     private Long participantLimit;
 
     /** Дата и время публикации события (в формате "yyyy-MM-dd HH:mm:ss") */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private LocalDateTime publishedOn;
 
     /** Нужна ли пре-модерация заявок на участие */
@@ -68,4 +70,3 @@ public class EventFullDto {
     /** Количество просмотрев события */
     private Long views;
 }
-

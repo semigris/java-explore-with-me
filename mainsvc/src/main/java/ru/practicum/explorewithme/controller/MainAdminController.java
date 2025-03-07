@@ -23,6 +23,8 @@ import ru.practicum.explorewithme.service.base.UserService;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
+
 @Slf4j
 @RestController
 @AllArgsConstructor
@@ -79,8 +81,8 @@ public class MainAdminController {
     public List<EventFullDto> getEvents(@RequestParam(required = false) List<Long> users,
                                         @RequestParam(required = false) List<String> states,
                                         @RequestParam(required = false) List<Long> categories,
-                                        @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-                                        @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+                                        @RequestParam(required = false) @DateTimeFormat(pattern = DATE_FORMAT) LocalDateTime rangeStart,
+                                        @RequestParam(required = false) @DateTimeFormat(pattern = DATE_FORMAT) LocalDateTime rangeEnd,
                                         @RequestParam(defaultValue = "0") Integer from,
                                         @RequestParam(defaultValue = "10") Integer size) {
         log.debug("Запрос на получение событий с параметрами: users={}, states={}, categories={}, rangeStart={}, rangeEnd={}, from={}, size={}",

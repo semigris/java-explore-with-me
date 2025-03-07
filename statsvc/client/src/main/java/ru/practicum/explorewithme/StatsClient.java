@@ -1,5 +1,7 @@
 package ru.practicum.explorewithme;
 
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
@@ -26,14 +28,23 @@ public class StatsClient extends BaseClient {
         return post("/hit", endpointHit);
     }
 
-    public ResponseEntity<Object> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
+    public List<ViewStatsDto> getStats(LocalDateTime start, LocalDateTime end, List<String> uris, boolean unique) {
         Map<String, Object> parameters = Map.of(
                 "start", start.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 "end", end.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")),
                 "uris", String.join(",", uris),
                 "unique", unique
         );
-        return get("/stats?start={start}&end={end}&uris={uris}&unique={unique}", parameters);
+
+        ResponseEntity<Object> response = get("/stats?start={start}&end={end}&uris={uris}&unique={unique}", parameters);
+
+        if (response.getStatusCode().is2xxSuccessful()) {
+            ObjectMapper objectMapper = new ObjectMapper();
+            return objectMapper.convertValue(response.getBody(), new TypeReference<>() {
+            });
+        } else {
+            throw new RuntimeException("Failed to fetch stats: " + response.getStatusCode());
+        }
     }
 }
 

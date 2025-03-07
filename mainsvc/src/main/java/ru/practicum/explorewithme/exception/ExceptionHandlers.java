@@ -6,6 +6,7 @@ import org.springframework.dao.InvalidDataAccessApiUsageException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -14,8 +15,8 @@ import java.time.LocalDateTime;
 @Slf4j
 @ControllerAdvice
 @RestControllerAdvice
-public class ExceptionHandler {
-    @org.springframework.web.bind.annotation.ExceptionHandler
+public class ExceptionHandlers {
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ApiError handleException(final Exception e) {
         log.error("Error 500: {}", e.getMessage());
@@ -27,7 +28,7 @@ public class ExceptionHandler {
                 .build();
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.CONFLICT)
     public ApiError handleConflictException(final ConflictException e) {
         log.error("Error 409: {}", e.getMessage());
@@ -39,7 +40,7 @@ public class ExceptionHandler {
                 .build();
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler
+    @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ApiError handleNotFoundException(final NotFoundException e) {
         log.error("Error 404: {}", e.getMessage());
@@ -51,7 +52,7 @@ public class ExceptionHandler {
                 .build();
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler({
+    @ExceptionHandler({
             BadRequestException.class,
             MethodArgumentNotValidException.class,
             InvalidDataAccessApiUsageException.class,

@@ -3,18 +3,21 @@ package ru.practicum.explorewithme.dto.request;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
+
 import java.time.LocalDateTime;
+
+import static ru.practicum.explorewithme.utils.Constant.DATE_FORMAT;
 
 
 @Data
 @Builder
 public class ParticipationRequestDto {
 
-    /** Идентификатор*/
+    /** Идентификатор */
     private Long id;
 
     /** Дата и время создания заявки */
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = DATE_FORMAT)
     private LocalDateTime created;
 
     /** Идентификатор события */

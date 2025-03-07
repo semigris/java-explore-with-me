@@ -26,6 +26,7 @@ import java.util.Objects;
 @Slf4j
 @Service
 @AllArgsConstructor
+@Transactional(readOnly = true)
 public class RequestServiceImpl implements RequestService {
 
     private final RequestRepository requestRepository;
@@ -34,7 +35,6 @@ public class RequestServiceImpl implements RequestService {
     private final RequestMapper requestMapper;
 
     @Override
-    @Transactional(readOnly = true)
     public List<ParticipationRequestDto> getUserRequests(Long userId) {
         log.debug("Получение всех запросов пользователя с id: {} на участие в событиях", userId);
         userRepository.findById(userId)
@@ -111,7 +111,6 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
-    @Transactional(readOnly = true)
     public List<ParticipationRequestDto> getRequestsByEventId(Long eventId) {
         log.debug("Получение всех запросов на участие в событии с id: {}", eventId);
         List<ParticipationRequest> requests = requestRepository.findByEventId(eventId);
