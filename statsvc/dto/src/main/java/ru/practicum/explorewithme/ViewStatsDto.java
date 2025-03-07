@@ -6,6 +6,8 @@ import lombok.*;
 @Setter
 @Builder
 @AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class ViewStatsDto {
     /** Название сервиса */
     private String app;

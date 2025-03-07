@@ -1,5 +1,6 @@
 package ru.practicum.explorewithme.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -33,6 +34,7 @@ public class EndpointHit {
 
     /** Дата и время, когда был совершен запрос к эндпоинту (в формате "yyyy-MM-dd HH:mm:ss") */
     @Column(name = "timestamp")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime timestamp;
 }
 

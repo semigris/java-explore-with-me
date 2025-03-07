@@ -34,8 +34,8 @@ public class StatsController {
      */
     @GetMapping("/stats")
     public List<ViewStatsDto> getStats(
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
-            @RequestParam @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime start,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime end,
             @RequestParam(required = false) List<String> uris,
             @RequestParam(defaultValue = "false") boolean unique) {
         log.debug("Запрос на получение статистики по посещениям за период с: {} до: {}. " +
