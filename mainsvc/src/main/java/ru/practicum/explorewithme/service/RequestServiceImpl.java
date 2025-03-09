@@ -38,7 +38,7 @@ public class RequestServiceImpl implements RequestService {
     public List<ParticipationRequestDto> getUserRequests(Long userId) {
         log.debug("Получение всех запросов пользователя с id: {} на участие в событиях", userId);
         userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException("Пользователь с id:" + userId + " не найден"));
+                .orElseThrow(() -> new NotFoundException("Пользователь с id: " + userId + " не найден"));
 
         List<ParticipationRequest> requests = requestRepository.findByRequesterId(userId);
 
@@ -52,11 +52,11 @@ public class RequestServiceImpl implements RequestService {
         log.debug("Добавление запроса на участие в событии с id: {} для пользователя с id: {}", eventId, userId);
 
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new NotFoundException("Событие с id:" + eventId + " не найдено"));
+                .orElseThrow(() -> new NotFoundException("Событие с id: " + eventId + " не найдено"));
         log.debug("Событие для участия: {}", event);
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException("Пользователь с id:" + userId + " не найден"));
+                .orElseThrow(() -> new NotFoundException("Пользователь с id: " + userId + " не найден"));
 
         if (event.getInitiator().getId().equals(userId)) {
             throw new ConflictException("Нельзя добавить запрос на участие от инициатора события");

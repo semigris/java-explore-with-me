@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.explorewithme.dto.comment.CommentDto;
+import ru.practicum.explorewithme.dto.comment.NewCommentDto;
+import ru.practicum.explorewithme.dto.comment.UpdateCommentUserRequest;
 import ru.practicum.explorewithme.dto.event.EventFullDto;
 import ru.practicum.explorewithme.dto.event.EventShortDto;
 import ru.practicum.explorewithme.dto.event.NewEventDto;
@@ -12,6 +15,7 @@ import ru.practicum.explorewithme.dto.event.UpdateEventUserRequest;
 import ru.practicum.explorewithme.dto.request.EventRequestStatusUpdateRequest;
 import ru.practicum.explorewithme.dto.request.EventRequestStatusUpdateResult;
 import ru.practicum.explorewithme.dto.request.ParticipationRequestDto;
+import ru.practicum.explorewithme.service.base.CommentService;
 import ru.practicum.explorewithme.service.base.EventService;
 import ru.practicum.explorewithme.service.base.RequestService;
 
@@ -25,10 +29,11 @@ public class MainPrivateController {
 
     private final EventService eventService;
     private final RequestService requestService;
+    private final CommentService commentService;
 
     /**
      * Private: События
-     *
+     * <p>
      * GET /users/{userId}/events Получение событий, добавленных текущим пользователем
      */
 
@@ -106,7 +111,7 @@ public class MainPrivateController {
 
     /**
      * Private: Запросы на участие
-     *
+     * <p>
      * GET /users/{userId}/requests Получение информации о заявках текущего пользователя на участие в чужих событиях.
      */
 
@@ -137,5 +142,53 @@ public class MainPrivateController {
                                                  @PathVariable Long requestId) {
         log.debug("Запрос на отмену запроса на участие с id: {} для пользователя с id: {}", requestId, userId);
         return requestService.cancelRequest(userId, requestId);
+    }
+
+    /**
+     * Private: Комментариии
+     * <p>
+     * POST /users/{userId}/comments/{eventId} Создание нового комментария к событию текущим пользователем.
+     */
+
+    @PostMapping("/comments/{eventId}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public CommentDto createComment(@PathVariable Long eventId,
+                                    @PathVariable Long userId,
+                                    @RequestBody @Valid NewCommentDto newCommentDto) {
+        log.debug("Запрос на создание комментария к событию с id: {} пользователем с id: {}", eventId, userId);
+        return commentService.createComment(newCommentDto, eventId, userId);
+    }
+
+    /**
+     * PATCH /users/{userId}/comments/{commentId} Обновление комментария текущего пользователя.
+     * Обновлять можно как опубликованные, так и отмененные модерацией комментарии.
+     * После обновления комментарий автоматически меняет статус и снова отправляется на модерацию.
+     */
+    @PatchMapping("/comments/{commentId}")
+    public CommentDto updateOwnComment(@PathVariable Long commentId,
+                                       @PathVariable Long userId,
+                                       @RequestBody @Valid UpdateCommentUserRequest updateCommentUserRequest) {
+        log.debug("Запрос на обновление своего комментария с id: {} пользователем с id: {}", commentId, userId);
+        return commentService.updateComment(commentId, updateCommentUserRequest.getText(), userId);
+    }
+
+    /**
+     * GET /users/{userId}/comments/{commentId} Получение информации о конкретном комментарии текущего пользователя.
+     */
+    @GetMapping("/comments/{commentId}")
+    public CommentDto getComment(@PathVariable Long commentId,
+                                 @PathVariable Long userId) {
+        log.debug("Запрос на получение комментария с id: {} пользователем: {}", commentId, userId);
+        return commentService.getComment(commentId, userId);
+    }
+
+    /**
+     * GET /users/{userId}/comments/events/{eventId} Получение всех комментариев к событию текущим пользователем.
+     */
+    @GetMapping("/comments/events/{eventId}")
+    public List<CommentDto> getCommentsByEvent(@PathVariable Long eventId,
+                                               @PathVariable Long userId) {
+        log.debug("Запрос на получение всех комментариев к событию с id: {} пользователем: {}", eventId, userId);
+        return commentService.getCommentsByEvent(eventId, userId);
     }
 }
