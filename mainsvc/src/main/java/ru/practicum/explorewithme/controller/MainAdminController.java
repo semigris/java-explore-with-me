@@ -11,14 +11,13 @@ import ru.practicum.explorewithme.dto.campilation.NewCompilationDto;
 import ru.practicum.explorewithme.dto.campilation.UpdateCompilationRequest;
 import ru.practicum.explorewithme.dto.category.CategoryDto;
 import ru.practicum.explorewithme.dto.category.NewCategoryDto;
+import ru.practicum.explorewithme.dto.comment.CommentDto;
+import ru.practicum.explorewithme.dto.comment.UpdateCommentAdminRequest;
 import ru.practicum.explorewithme.dto.event.EventFullDto;
 import ru.practicum.explorewithme.dto.event.UpdateEventAdminRequest;
 import ru.practicum.explorewithme.dto.user.NewUserRequest;
 import ru.practicum.explorewithme.dto.user.UserDto;
-import ru.practicum.explorewithme.service.base.CategoryService;
-import ru.practicum.explorewithme.service.base.CompilationService;
-import ru.practicum.explorewithme.service.base.EventService;
-import ru.practicum.explorewithme.service.base.UserService;
+import ru.practicum.explorewithme.service.base.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -33,6 +32,7 @@ public class MainAdminController {
 
     private final CategoryService categoryService;
     private final CompilationService compilationService;
+    private final CommentService commentService;
     private final EventService eventService;
     private final UserService userService;
 
@@ -159,5 +159,39 @@ public class MainAdminController {
                                             @RequestBody @Valid UpdateCompilationRequest updateCompilationRequest) {
         log.debug("Запрос на обновление подборки с id: {}. Новые данные: {}", compId, updateCompilationRequest);
         return compilationService.updateCompilation(compId, updateCompilationRequest);
+    }
+
+    /**
+     * Admin: Комментарии
+     * <p>
+     * PATCH /admin/comments/{commentId}  Модерация комментария (отклонение/публикация).
+     */
+
+    @PatchMapping("/comments/{commentId}")
+    public CommentDto updateCommentStatus(@PathVariable Long commentId,
+                                          @RequestBody @Valid UpdateCommentAdminRequest request) {
+        log.debug("Запрос на обновление статуса коментария с id: {}. Новый статус: {}", commentId, request.getStatus());
+        return commentService.updateCommentStatus(commentId, request.getStatus());
+    }
+
+    /**
+     * GET /admin/comments Поиск комментариев с параметрами
+     */
+
+    @GetMapping("/comments")
+    public List<CommentDto> getComments(@RequestParam String status,
+                                        @RequestParam(required = false) Long eventId) {
+        log.debug("Запрос на получение комментариев с параметрами: eventId={}, status={}", eventId, status);
+        return commentService.getCommentsByStatus(eventId, status);
+    }
+
+    /**
+     * DELETE /admin/comments/{commentId} Удаление комментария.
+     */
+    @DeleteMapping("/comments/{commentId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteOwnComment(@PathVariable Long commentId) {
+        log.debug("Запрос на удаление своего комментария с id: {}", commentId);
+        commentService.deleteComment(commentId);
     }
 }
