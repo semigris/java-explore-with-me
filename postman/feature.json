@@ -65,7 +65,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"pm.expect(target).to.have.property('id');\r",
 									"pm.expect(target).to.have.property('eventId')\r",
 									"pm.expect(target).to.have.property('authorId');\r",
@@ -155,7 +155,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"pm.expect(target).to.have.property('id');\r",
 									"pm.expect(target).to.have.property('eventId')\r",
 									"pm.expect(target).to.have.property('authorId');\r",
@@ -235,7 +235,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"    pm.expect(target).to.have.property('id');\r",
 									"    pm.expect(target).to.have.property('eventId')\r",
 									"    pm.expect(target).to.have.property('authorId');\r",
@@ -323,7 +323,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"pm.expect(target).to.have.property('id');\r",
 									"pm.expect(target).to.have.property('eventId')\r",
 									"pm.expect(target).to.have.property('authorId');\r",
@@ -412,7 +412,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"pm.expect(target).to.have.property('id');\r",
 									"pm.expect(target).to.have.property('eventId')\r",
 									"pm.expect(target).to.have.property('authorId');\r",
@@ -517,7 +517,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"pm.expect(target).to.have.property('id');\r",
 									"pm.expect(target).to.have.property('eventId')\r",
 									"pm.expect(target).to.have.property('authorId');\r",
@@ -606,7 +606,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"pm.expect(target).to.have.property('id');\r",
 									"pm.expect(target).to.have.property('eventId')\r",
 									"pm.expect(target).to.have.property('authorId');\r",
@@ -997,7 +997,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: id, eventId, authorId, text, status, created, updated\", function () {\r",
 									"pm.expect(target).to.have.property('id');\r",
 									"pm.expect(target).to.have.property('eventId')\r",
 									"pm.expect(target).to.have.property('authorId');\r",
@@ -1331,7 +1331,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(409);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1340,7 +1340,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1409,7 +1409,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(409);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1418,7 +1418,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1487,7 +1487,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(404);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1496,7 +1496,7 @@
 									"const source = JSON.parse(pm.request.body.raw);\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1565,7 +1565,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 400 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(400);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1574,7 +1574,7 @@
 									"const source = pm.request;\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1638,7 +1638,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(404);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1647,7 +1647,7 @@
 									"const source = pm.request;\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1655,7 +1655,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.message).equal('Событие с id: 42 не найдено');\r",
+									"    pm.expect(target.message).equal('Событие с id: 42424242 не найдено');\r",
 									"    pm.expect(target.reason).equal('Запрашиваемый ресурс не найден');\r",
 									"    pm.expect(target.status).equal('NOT_FOUND');\r",
 									"});"
@@ -1669,7 +1669,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/admin/comments?status=PENDING&eventId=42",
+							"raw": "http://localhost:8080/admin/comments?status=PENDING&eventId=42424242",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -1686,7 +1686,7 @@
 								},
 								{
 									"key": "eventId",
-									"value": "42"
+									"value": "42424242"
 								}
 							]
 						}
@@ -1710,7 +1710,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(404);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1719,7 +1719,7 @@
 									"const source = pm.request;\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1727,7 +1727,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.message).equal('Комментарий с id: 42 не найден');\r",
+									"    pm.expect(target.message).equal('Комментарий с id: 42424242 не найден');\r",
 									"    pm.expect(target.reason).equal('Запрашиваемый ресурс не найден');\r",
 									"    pm.expect(target.status).equal('NOT_FOUND');\r",
 									"});"
@@ -1755,7 +1755,7 @@
 							"variable": [
 								{
 									"key": "commentId",
-									"value": "42"
+									"value": "42424242"
 								}
 							]
 						}
@@ -1779,7 +1779,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(404);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1788,7 +1788,7 @@
 									"const source = pm.request;\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1796,7 +1796,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.message).equal('Событие с id: 42 не найдено');\r",
+									"    pm.expect(target.message).equal('Событие с id: 42424242 не найдено');\r",
 									"    pm.expect(target.reason).equal('Запрашиваемый ресурс не найден');\r",
 									"    pm.expect(target.status).equal('NOT_FOUND');\r",
 									"});"
@@ -1838,7 +1838,7 @@
 								},
 								{
 									"key": "eventId",
-									"value": "42"
+									"value": "42424242"
 								}
 							]
 						}
@@ -1862,7 +1862,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(404);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1871,7 +1871,7 @@
 									"const source = pm.request;\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -1879,7 +1879,7 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.message).equal('Пользователь с id: 42 не найден');\r",
+									"    pm.expect(target.message).equal('Пользователь с id: 42424242 не найден');\r",
 									"    pm.expect(target.reason).equal('Запрашиваемый ресурс не найден');\r",
 									"    pm.expect(target.status).equal('NOT_FOUND');\r",
 									"});"
@@ -1917,7 +1917,7 @@
 							"variable": [
 								{
 									"key": "userId",
-									"value": "42"
+									"value": "42424242"
 								},
 								{
 									"key": "eventId",
@@ -1945,7 +1945,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 409 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(409);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -1954,7 +1954,7 @@
 									"const source = pm.request;\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -2028,7 +2028,7 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"pm.test(\"Ответ должен содержать код статуса 201 и данные в формате json\", function () {\r",
+									"pm.test(\"Ответ должен содержать код статуса 404 и данные в формате json\", function () {\r",
 									"    pm.response.to.have.status(404);   \r",
 									"    pm.response.to.be.withBody;\r",
 									"    pm.response.to.be.json;\r",
@@ -2037,7 +2037,7 @@
 									"const source = pm.request;\r",
 									"const target = pm.response.json();\r",
 									"\r",
-									"pm.test(\"Комментарий должен содержать поля: id, created, text, authorId\", function () {\r",
+									"pm.test(\"Комментарий должен содержать поля: message, reason, status, timestamp\", function () {\r",
 									"pm.expect(target).to.have.property('message');\r",
 									"pm.expect(target).to.have.property('reason')\r",
 									"pm.expect(target).to.have.property('status');\r",
@@ -2045,7 +2045,6 @@
 									"});\r",
 									"\r",
 									"pm.test(\"Данные в ответе должны соответствовать данным в запросе\", function () {\r",
-									"    pm.expect(target.message).equal('Комментарий с id: 1 от пользователя с id:2 не найден');\r",
 									"    pm.expect(target.reason).equal('Запрашиваемый ресурс не найден');\r",
 									"    pm.expect(target.status).equal('NOT_FOUND');\r",
 									"});"
