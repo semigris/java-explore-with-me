@@ -103,10 +103,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -186,10 +188,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -267,10 +271,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+							"raw": "http://localhost:8080/users/:userId/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -354,10 +360,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -436,10 +444,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -544,10 +554,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -626,10 +638,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -699,10 +713,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+							"raw": "http://localhost:8080/users/:userId/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -806,10 +822,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/events/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/events/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -898,10 +916,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/events/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/events/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -1015,10 +1035,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -1120,10 +1142,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments?status=PENDING",
+							"raw": "http://localhost:8080/admin/comments?status=PENDING",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments"
@@ -1210,10 +1234,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments?status=PENDING&eventId={{eid1}}",
+							"raw": "http://localhost:8080/admin/comments?status=PENDING&eventId={{eid1}}",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments"
@@ -1262,10 +1288,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -1343,10 +1371,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -1419,10 +1449,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -1495,10 +1527,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -1562,10 +1596,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments?status=DOWNLOAD",
+							"raw": "http://localhost:8080/admin/comments?status=DOWNLOAD",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments"
@@ -1633,10 +1669,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments?status=PENDING&eventId=42",
+							"raw": "http://localhost:8080/admin/comments?status=PENDING&eventId=42",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments"
@@ -1703,10 +1741,12 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/admin/comments/:commentId",
+							"raw": "http://localhost:8080/admin/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"admin",
 								"comments",
@@ -1779,10 +1819,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -1860,10 +1902,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:eventId",
+							"raw": "http://localhost:8080/users/:userId/comments/:eventId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -1941,10 +1985,12 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+							"raw": "http://localhost:8080/users/:userId/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -2013,10 +2059,12 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{baseUrl}}/users/:userId/comments/:commentId",
+							"raw": "http://localhost:8080/users/:userId/comments/:commentId",
+							"protocol": "http",
 							"host": [
-								"{{baseUrl}}"
+								"localhost"
 							],
+							"port": "8080",
 							"path": [
 								"users",
 								":userId",
@@ -2235,7 +2283,16 @@
 	],
 	"variable": [
 		{
+			"key": "baseUrl",
+			"value": "",
+			"type": "string"
+		},
+		{
 			"key": "uid1",
+			"value": ""
+		},
+		{
+			"key": "uid2",
 			"value": ""
 		},
 		{
@@ -2243,15 +2300,11 @@
 			"value": ""
 		},
 		{
+			"key": "eid2",
+			"value": ""
+		},
+		{
 			"key": "cid1",
-			"value": ""
-		},
-		{
-			"key": "сid",
-			"value": ""
-		},
-		{
-			"key": "uid2",
 			"value": ""
 		},
 		{
@@ -2263,21 +2316,12 @@
 			"value": ""
 		},
 		{
-			"key": "updateDateComment1",
-			"value": ""
-		},
-		{
-			"key": "eid2",
-			"value": ""
-		},
-		{
 			"key": "cid4",
 			"value": ""
 		},
 		{
-			"key": "baseUrl",
-			"value": "",
-			"type": "string"
+			"key": "updateDateComment1",
+			"value": ""
 		}
 	]
 }
