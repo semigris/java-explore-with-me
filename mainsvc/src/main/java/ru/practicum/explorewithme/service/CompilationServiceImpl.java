@@ -81,6 +81,8 @@ public class CompilationServiceImpl implements CompilationService {
         List<Compilation> compilations = compilationRepository.findByPinned(pinned, pageRequest);
 
         log.debug("Подборки с параметрами найдены: {}", compilations);
-        return compilations.stream().map(compilationMapper::toCompilationDto).toList();
+        return compilations.stream()
+                .map(compilationMapper::toCompilationDto)
+                .toList();
     }
 }

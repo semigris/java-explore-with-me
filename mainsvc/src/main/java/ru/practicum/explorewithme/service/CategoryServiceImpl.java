@@ -43,7 +43,9 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> categories = categoryRepository.findAll(pageRequest).getContent();
 
         log.debug("Категория с параметрами найдены: {}", categories);
-        return categories.stream().map(categoryMapper::toCategoryDto).toList();
+        return categories.stream()
+                .map(categoryMapper::toCategoryDto)
+                .toList();
     }
 
 

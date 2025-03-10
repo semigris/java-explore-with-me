@@ -38,12 +38,14 @@ public class RequestServiceImpl implements RequestService {
     public List<ParticipationRequestDto> getUserRequests(Long userId) {
         log.debug("Получение всех запросов пользователя с id: {} на участие в событиях", userId);
         userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException("Пользователь с id:" + userId + " не найден"));
+                .orElseThrow(() -> new NotFoundException("Пользователь с id: " + userId + " не найден"));
 
         List<ParticipationRequest> requests = requestRepository.findByRequesterId(userId);
 
         log.debug("Запросы пользователя на участие в событиях: {}", requests);
-        return requests.stream().map(requestMapper::toParticipationRequestDto).toList();
+        return requests.stream()
+                .map(requestMapper::toParticipationRequestDto)
+                .toList();
     }
 
     @Override
@@ -52,11 +54,11 @@ public class RequestServiceImpl implements RequestService {
         log.debug("Добавление запроса на участие в событии с id: {} для пользователя с id: {}", eventId, userId);
 
         Event event = eventRepository.findById(eventId)
-                .orElseThrow(() -> new NotFoundException("Событие с id:" + eventId + " не найдено"));
+                .orElseThrow(() -> new NotFoundException("Событие с id: " + eventId + " не найдено"));
         log.debug("Событие для участия: {}", event);
 
         User user = userRepository.findById(userId)
-                .orElseThrow(() -> new NotFoundException("Пользователь с id:" + userId + " не найден"));
+                .orElseThrow(() -> new NotFoundException("Пользователь с id: " + userId + " не найден"));
 
         if (event.getInitiator().getId().equals(userId)) {
             throw new ConflictException("Нельзя добавить запрос на участие от инициатора события");
@@ -114,7 +116,9 @@ public class RequestServiceImpl implements RequestService {
     public List<ParticipationRequestDto> getRequestsByEventId(Long eventId) {
         log.debug("Получение всех запросов на участие в событии с id: {}", eventId);
         List<ParticipationRequest> requests = requestRepository.findByEventId(eventId);
-        return requests.stream().map(requestMapper::toParticipationRequestDto).toList();
+        return requests.stream()
+                .map(requestMapper::toParticipationRequestDto)
+                .toList();
     }
 
     @Override
