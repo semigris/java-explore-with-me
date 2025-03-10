@@ -72,7 +72,7 @@ public class EventServiceImpl implements EventService {
         statsClient.saveHit(createHit(request));
 
         Event event = eventRepository.findById(id).filter(e -> e.getState().equals(PUBLISHED))
-                .orElseThrow(() -> new NotFoundException("Событие с id:" + id + " не найдено"));
+                .orElseThrow(() -> new NotFoundException("Событие с id: " + id + " не найдено"));
 
         Map<Long, Long> viewStatsMap = getViews(List.of(event));
         Long views = viewStatsMap.getOrDefault(event.getId(), 0L);
@@ -102,7 +102,9 @@ public class EventServiceImpl implements EventService {
         }
 
         log.debug("События с параметрами получены: {}", events);
-        return events.stream().map(eventMapper::toEventFullDto).toList();
+        return events.stream()
+                .map(eventMapper::toEventFullDto)
+                .toList();
     }
 
     @Override
@@ -140,7 +142,9 @@ public class EventServiceImpl implements EventService {
         }
 
         log.debug("События с параметрами получены: {}", events);
-        return events.stream().map(eventMapper::toEventShortDto).toList();
+        return events.stream()
+                .map(eventMapper::toEventShortDto)
+                .toList();
     }
 
     @Override
@@ -157,7 +161,9 @@ public class EventServiceImpl implements EventService {
         }
 
         log.debug("События пользователя найдены: {}", events);
-        return events.stream().map(eventMapper::toEventShortDto).toList();
+        return events.stream()
+                .map(eventMapper::toEventShortDto)
+                .toList();
     }
 
     @Override
