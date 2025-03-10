@@ -43,7 +43,9 @@ public class RequestServiceImpl implements RequestService {
         List<ParticipationRequest> requests = requestRepository.findByRequesterId(userId);
 
         log.debug("Запросы пользователя на участие в событиях: {}", requests);
-        return requests.stream().map(requestMapper::toParticipationRequestDto).toList();
+        return requests.stream()
+                .map(requestMapper::toParticipationRequestDto)
+                .toList();
     }
 
     @Override
@@ -114,7 +116,9 @@ public class RequestServiceImpl implements RequestService {
     public List<ParticipationRequestDto> getRequestsByEventId(Long eventId) {
         log.debug("Получение всех запросов на участие в событии с id: {}", eventId);
         List<ParticipationRequest> requests = requestRepository.findByEventId(eventId);
-        return requests.stream().map(requestMapper::toParticipationRequestDto).toList();
+        return requests.stream()
+                .map(requestMapper::toParticipationRequestDto)
+                .toList();
     }
 
     @Override

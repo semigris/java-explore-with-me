@@ -67,17 +67,23 @@ public class CommentServiceImpl implements CommentService {
         }
 
         log.debug("Найдены комментарии со статусом {}: {}", status, comments);
-        return comments.stream().map(commentMapper::toCommentDto).toList();
+        return comments.stream()
+                .map(commentMapper::toCommentDto)
+                .toList();
     }
 
     public List<CommentDto> getCommentsByEvent(Long eventId, Long userId) {
         log.debug("Получение списка комментариев к событию с id: {} пользователем: {}", eventId, userId);
 
-        List<Comment> comments = commentRepository.findByEventIdAndAuthorId(eventId, userId)
-                .orElseThrow(() -> new NotFoundException("Комментарии от пользователя с id: " + userId + " не найдены"));
+        List<Comment> comments = commentRepository.findByEventIdAndAuthorId(eventId, userId);
+
+        if (comments.isEmpty())
+            throw new NotFoundException("Комментарии от пользователя с id: " + userId + " не найдены");
 
         log.debug("Получен список комментариев: {}", comments);
-        return comments.stream().map(commentMapper::toCommentDto).toList();
+        return comments.stream()
+                .map(commentMapper::toCommentDto)
+                .toList();
     }
 
     @Override

@@ -102,7 +102,9 @@ public class EventServiceImpl implements EventService {
         }
 
         log.debug("События с параметрами получены: {}", events);
-        return events.stream().map(eventMapper::toEventFullDto).toList();
+        return events.stream()
+                .map(eventMapper::toEventFullDto)
+                .toList();
     }
 
     @Override
@@ -140,7 +142,9 @@ public class EventServiceImpl implements EventService {
         }
 
         log.debug("События с параметрами получены: {}", events);
-        return events.stream().map(eventMapper::toEventShortDto).toList();
+        return events.stream()
+                .map(eventMapper::toEventShortDto)
+                .toList();
     }
 
     @Override
@@ -157,7 +161,9 @@ public class EventServiceImpl implements EventService {
         }
 
         log.debug("События пользователя найдены: {}", events);
-        return events.stream().map(eventMapper::toEventShortDto).toList();
+        return events.stream()
+                .map(eventMapper::toEventShortDto)
+                .toList();
     }
 
     @Override

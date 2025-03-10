@@ -9,7 +9,7 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findByEventIdAndStatus(Long eventId, Comment.CommentStatus status);
 
-    Optional<List<Comment>> findByEventIdAndAuthorId(Long eventId, Long authorId);
+    List<Comment> findByEventIdAndAuthorId(Long eventId, Long authorId);
 
     Optional<Comment> findByIdAndAuthorId(Long commentId, Long authorId);
 
